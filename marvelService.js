@@ -1,4 +1,4 @@
-const apiBaseURL = "http://gateway.marvel.com/v1/public"
+const apiBaseURL = "https://gateway.marvel.com/v1/public"
 
 // NOTE: Example characters with INVALID images: Spider-dok, Blue Marvel, Revanche, Unus
 const withValidImages = character => character.thumbnail.path.includes("image_not_available") === false
@@ -7,14 +7,14 @@ const withValidImages = character => character.thumbnail.path.includes("image_no
 
 function searchMarvelCharacters (searchTerm) {
     const url = buildURL(searchTerm)  // A lot of APIs make you build a complicated URL, so it is often nice to have a dedicated function to build it all together.
-    fetch(url)
+    fetch(url)  // GET request
         .then(response => response.json())
         .then(body => {
             console.log(body)  // Here is our data!
             const matchedCharacters = body.data.results
             const charactersWithImages = matchedCharacters.filter(withValidImages)
 
-            renderGalleryView(charactersWithImages, galleryElement)
+            renderGalleryView(charactersWithImages)
         })
 }
 
@@ -33,7 +33,7 @@ function buildURL (searchTerm) {
     })
 
     const endpoint = `${apiBaseURL}/characters`  // Notice the question mark to start the query parameters.
-    const url = endpoint + "?" + params
+    const url = endpoint + "?" + params.toString()
 
     return url  // Looks like: http://gateway.marvel.com/v1/public/characters?ts=XXXX&apikey=XXXX...
 }
