@@ -16,7 +16,7 @@ function searchMarvelCharacters (searchTerm) {
             const matchedCharacters = body.data.results
             const charactersWithImages = matchedCharacters.filter(withValidImages)
 
-            renderGalleryView(charactersWithImages, galleryElement)
+            renderGalleryView(charactersWithImages)
         })
 }
 

@@ -1,8 +1,8 @@
 const galleryElement = document.querySelector("#gallery")
 
 function renderGalleryView (characters) {
-    const characterImageElements = characters.map(toCharacterCard)
-    galleryElement.replaceChildren(...characterImageElements)  // replaceChildren() is our alternative to append() when we want to replace the contents of the parent element, instead of adding new elements
+    const characterCards = characters.map(toCharacterCard)
+    galleryElement.replaceChildren(...characterCards)  // replaceChildren() is our alternative to append() when we want to replace the contents of the parent element, instead of adding new elements
 }
 
 function toCharacterCard (character) {
@@ -31,8 +31,8 @@ function characterNameView (character) {
     link.alt = character.name + " on Marvel.com"
     link.target = "_blank"
     
-    const urlObject = character.urls.find(urlObject => urlObject.type === "detail") // or backup links if there is no detail link for this character...
-        || character.urls.find(urlObject => urlObject.type === "wiki")
+    const urlObject = character.urls.find(urlObject => urlObject.type === "wiki") // or backup links if there is no wiki link for this character...
+        || character.urls.find(urlObject => urlObject.type === "detail")
         || character.urls.find(urlObject => urlObject.type === "comiclink")
 
     link.href = urlObject.url
@@ -48,8 +48,7 @@ function characterNameView (character) {
     firstLineElement.append(firstLine)
     if (secondLine) secondLineElement.append("(" + secondLine)  // Don't add content to this DIV if there is no text in parentheses (see the split() above)
 
-    link.append(firstLineElement)
-    link.append(secondLineElement)
+    link.append(firstLineElement, secondLineElement)
 
     return link  /* Should look like:
         <a href="..." alt="..." target="_blank">
