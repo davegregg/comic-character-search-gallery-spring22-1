@@ -58,3 +58,5 @@ function characterNameView (character) {
         </a>
     */
 }
+
+export { galleryElement, renderGalleryView }

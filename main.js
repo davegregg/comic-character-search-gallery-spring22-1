@@ -1,3 +1,5 @@
+import { searchMarvelCharacters } from "./marvelService.js"
+
 const DEFAULT_SEARCH_TERM = "spider"
 
 // Run a search once on page load (before the user gets a chance to enter a new search term),

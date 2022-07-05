@@ -1,4 +1,6 @@
-const apiBaseURL = "http://gateway.marvel.com/v1/public"
+import { galleryElement, renderGalleryView } from "./view.js"
+
+const apiBaseURL = "https://gateway.marvel.com/v1/public"
 
 // NOTE: Example characters with INVALID images: Spider-dok, Blue Marvel, Revanche, Unus
 const withValidImages = character => character.thumbnail.path.includes("image_not_available") === false
@@ -37,3 +39,5 @@ function buildURL (searchTerm) {
 
     return url  // Looks like: http://gateway.marvel.com/v1/public/characters?ts=XXXX&apikey=XXXX...
 }
+
+export { searchMarvelCharacters }
