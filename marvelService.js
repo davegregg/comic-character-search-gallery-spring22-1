@@ -9,7 +9,7 @@ const withValidImages = character => character.thumbnail.path.includes("image_no
 
 function searchMarvelCharacters (searchTerm) {
     const url = buildURL(searchTerm)  // A lot of APIs make you build a complicated URL, so it is often nice to have a dedicated function to build it all together.
-    fetch(url)
+    fetch(url)  // GET request
         .then(response => response.json())
         .then(body => {
             console.log(body)  // Here is our data!
@@ -34,8 +34,8 @@ function buildURL (searchTerm) {
         limit: 100,
     })
 
-    const endpoint = `${apiBaseURL}/characters`  // Notice the question mark to start the query parameters.
-    const url = endpoint + "?" + params
+    const endpoint = `${apiBaseURL}/characters?`  // Notice the question mark to start the query parameters.
+    const url = endpoint + params.toString()
 
     return url  // Looks like: http://gateway.marvel.com/v1/public/characters?ts=XXXX&apikey=XXXX...
 }

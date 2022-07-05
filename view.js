@@ -1,11 +1,11 @@
 const galleryElement = document.querySelector("#gallery")
 
 function renderGalleryView (characters) {
-    const characterImageElements = characters.map(toCharacterView)
+    const characterImageElements = characters.map(toCharacterCard)
     galleryElement.replaceChildren(...characterImageElements)  // replaceChildren() is our alternative to append() when we want to replace the contents of the parent element, instead of adding new elements
 }
 
-function toCharacterView (character) {
+function toCharacterCard (character) {
     const imgURL = `${character.thumbnail.path}.${character.thumbnail.extension}`
     const imgElement = document.createElement("img")
     imgElement.src = imgURL
